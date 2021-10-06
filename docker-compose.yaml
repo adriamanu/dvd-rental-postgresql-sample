@@ -1,0 +1,18 @@
+version: "3.4"
+services:
+    postgres:
+      image: postgres:14.0-alpine
+      healthcheck:
+        test: pg_isready -Y postgres -h 127.0.0.1
+        interval: 10s
+      environment:
+        POSTGRES_DB: postgres
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+      ports:
+        - 5432:5432
+      volumes:
+        - postgres-rental-database:/var/lib/postgresql/data
+volumes:
+  postgres-rental-database:
+
